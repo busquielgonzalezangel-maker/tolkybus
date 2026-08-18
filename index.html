@@ -52,15 +52,12 @@
       background-color: #4338ca !important;
     }
 
-    .ad-box {
-      background-color: #f1f5f9;
-      border: 2px dashed #cbd5e1;
-      border-radius: 16px;
-      padding: 16px;
-      text-align: center;
-      color: #64748b;
-      font-size: 0.85rem;
-      font-weight: 700;
+    /* Contenedor adaptativo para anuncios */
+    .adsterra-wrapper {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -124,15 +121,18 @@
         </div>
       </div>
 
-      <!-- ESPACIO DE ANUNCIO INFERIOR -->
-      <div class="max-w-2xl mx-auto mt-8 ad-box h-24 flex items-center justify-center">
-        <span>Publicidad / Google AdSense (Bloque Inferior)</span>
+      <!-- HUECO INFERIOR: NATIVE BANNER DE ADSTERRA -->
+      <div class="max-w-2xl mx-auto mt-8 bg-white p-4 rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="adsterra-wrapper">
+          <script async="async" data-cfasync="false" src="https://pl30915101.effectivecpmnetwork.com/62c8b3ac6f28dd04ead8d0a39d257b15/invoke.js"></script>
+          <div id="container-62c8b3ac6f28dd04ead8d0a39d257b15"></div>
+        </div>
       </div>
 
     </div>
   </main>
 
-  <!-- MODAL DE ANUNCIO TRAS LA DESCARGA (FLOTANTE / MITAD DE LA PANTALLA) -->
+  <!-- PANEL FLOTANTE / MODAL TRAS LA DESCARGA -->
   <div id="ad-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full text-center shadow-2xl relative border-2 border-indigo-100 animate-in fade-in zoom-in duration-200">
       
@@ -151,12 +151,14 @@
         ¡Tu descarga ha comenzado!
       </h3>
       <p class="text-sm text-slate-500 mb-6">
-        Gracias por usar Tolkybus. Por favor, echa un vistazo a nuestros patrocinadores:
+        Gracias por usar Tolkybus. Por favor, apoya a nuestros patrocinadores haciéndoles una visita:
       </p>
 
-      <!-- ESPACIO PARA TU ANUNCIO DE ADSENSE (Intersticial / Cuadrado Grande) -->
-      <div class="w-full h-64 bg-slate-100 border-2 dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center text-slate-500 font-bold p-4">
-        <span>Aquí va tu código de anuncio de Google AdSense / Banner Grande (300x250 o adaptable)</span>
+      <!-- PANEL FLOTANTE: SCRIPT POPUNDER DE ADSTERRA -->
+      <div class="w-full bg-slate-50 rounded-2xl p-4 border border-slate-200 text-center overflow-hidden">
+        <div class="adsterra-wrapper">
+          <script src="https://pl30915102.effectivecpmnetwork.com/93/6d/3a/936d3a62d05747735762edaf3001c565.js"></script>
+        </div>
       </div>
 
       <button onclick="closeAdModal()" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition">
@@ -250,9 +252,7 @@
       }
     };
 
-    // Funciones para controlar el anuncio flotante
     window.triggerDownloadAndShowAd = function(downloadUrl, downloadName) {
-      // 1. Iniciar la descarga del archivo
       const a = document.createElement('a');
       a.href = downloadUrl;
       a.download = downloadName;
@@ -260,7 +260,6 @@
       a.click();
       document.body.removeChild(a);
 
-      // 2. Mostrar la ventana de anuncio justo después (medio segundo tras descargar)
       setTimeout(() => {
         const modal = document.getElementById('ad-modal');
         if (modal) {
@@ -358,7 +357,6 @@
                 </p>
               </div>
               
-              <!-- Botón que activa la descarga y abre el Anuncio Modal -->
               <button onclick="event.stopPropagation(); triggerDownloadAndShowAd('${downloadUrl}', '${downloadName}');"
                  class="bg-emerald-600 hover:bg-emerald-700 text-white font-black px-8 py-3.5 rounded-xl shadow-lg transition flex items-center gap-2 text-lg mt-2 cursor-pointer">
                 <i data-lucide="download" class="w-5 h-5"></i> Descargar Imagen
