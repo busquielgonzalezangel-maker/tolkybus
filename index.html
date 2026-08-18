@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOLKYBUS | Comprimir, Redimensionar y Convertir Imágenes</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Librería HEIC para Fotos de iPhone (Versión estable) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/heic2any/0.0.4/heic2any.min.js"></script>
+
+  <style>
+    #dropzone-container {
+      margin-top: 30px;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .dropzone-card {
+      background-color: #ffffff !important;
+      border: 4px dashed #4f46e5 !important;
+      border-radius: 24px !important;
+      padding: 40px 20px !important;
+      text-align: center !important;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease-in-out !important;
+    }
+
+    .dropzone-card:hover, .dropzone-card.active {
+      background-color: #f5f3ff !important;
+      border-color: #3730a3 !important;
+      transform: scale(1.01);
+    }
+
+    .btn-subir {
+      background-color: #4f46e5 !important;
+      color: #ffffff !important;
+      font-weight: 800 !important;
+      padding: 14px 28px !important;
+      border-radius: 12px !important;
+      display: inline-block !important;
+      margin-top: 15px !important;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.4) !important;
+    }
+
+    .btn-subir:hover {
+      background-color: #4338ca !important;
+    }
+
+    .ad-box {
+      background-color: #f1f5f9;
+      border: 2px dashed #cbd5e1;
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+  <!-- Header / Navbar -->
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black text-indigo-600 tracking-tight">
+        TOLKYBUS
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm font-semibold text-slate-600">
+        <a href="#dropzone-container" class="hover:text-indigo-600">Comprimir</a>
+        <a href="#dropzone-container" class="hover:text-indigo-600">Reducir a KB</a>
+        <a href="#dropzone-container" class="hover:text-indigo-600">HEIC a JPG</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="pt-8 pb-12 flex-grow">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4">
+        Comprime y Convierte tus <span class="text-indigo-600">Imágenes</span>
+      </h1>
+      <p class="text-slate-600 text-lg mb-6">
+        Optimiza fotos para la web, reduce el peso de tus archivos para trámites y convierte fotos HEIC al instante.
+      </p>
+
+      <!-- CAJA DROPZONE -->
+      <div id="dropzone-container" class="max-w-2xl mx-auto">
+        <div id="dropzone" class="dropzone-card">
+          <input type="file" id="file-input" class="hidden" accept="image/*,.heic,.HEIC">
+          
+          <div id="dropzone-content" class="flex flex-col items-center">
+            
+            <span class="bg-indigo-100 text-indigo-800 text-xs font-black tracking-wider uppercase px-4 py-1.5 rounded-full mb-4">
+              📍 ARRASTRA AQUÍ TUS ARCHIVOS E IMÁGENES
+            </span>
+
+            <div class="w-16 h-16 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-3 shadow-md">
+              <i data-lucide="upload-cloud" class="w-8 h-8"></i>
+            </div>
+
+            <h2 class="text-2xl font-black text-slate-900 mb-1">
+              Suelta tus imágenes en esta zona
+            </h2>
+            <p class="text-slate-500 text-sm">
+              o haz clic directamente en el botón de abajo
+            </p>
+
+            <button type="button" id="select-btn" class="btn-subir">
+              📁 Seleccionar Imagen desde tu dispositivo
+            </button>
+            
+            <p class="text-xs text-slate-400 font-medium mt-4">
+              Soporta: <strong class="text-slate-600">JPG, PNG, WebP y HEIC (iPhone)</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESPACIO DE ANUNCIO INFERIOR -->
+      <div class="max-w-2xl mx-auto mt-8 ad-box h-24 flex items-center justify-center">
+        <span>Publicidad / Google AdSense (Bloque Inferior)</span>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MODAL DE ANUNCIO TRAS LA DESCARGA (FLOTANTE / MITAD DE LA PANTALLA) -->
+  <div id="ad-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full text-center shadow-2xl relative border-2 border-indigo-100 animate-in fade-in zoom-in duration-200">
+      
+      <!-- Botón para cerrar la ventana emergente -->
+      <button onclick="closeAdModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 p-2 rounded-full transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="mb-4">
+        <span class="bg-indigo-100 text-indigo-700 text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full">
+          📢 Anuncio
+        </span>
+      </div>
+
+      <h3 class="text-2xl font-black text-slate-900 mb-2">
+        ¡Tu descarga ha comenzado!
+      </h3>
+      <p class="text-sm text-slate-500 mb-6">
+        Gracias por usar Tolkybus. Por favor, echa un vistazo a nuestros patrocinadores:
+      </p>
+
+      <!-- ESPACIO PARA TU ANUNCIO DE ADSENSE (Intersticial / Cuadrado Grande) -->
+      <div class="w-full h-64 bg-slate-100 border-2 dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center text-slate-500 font-bold p-4">
+        <span>Aquí va tu código de anuncio de Google AdSense / Banner Grande (300x250 o adaptable)</span>
+      </div>
+
+      <button onclick="closeAdModal()" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition">
+        Continuar en Tolkybus
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-4 text-center text-xs">
+    <p>© 2026 Tolkybus. Herramientas de optimización de imagen.</p>
+  </footer>
+
+  <!-- MOTOR Y LÓGICA -->
+  <script>
+    const Engine = {
+      async prepareFile(file) {
+        const isHeic = file.name.toLowerCase().endsWith('.heic') || file.type === 'image/heic' || file.type === '';
+        
+        if (isHeic) {
+          if (typeof heic2any === 'undefined') {
+            throw new Error('La librería HEIC aún se está cargando. Inténtalo de nuevo en unos segundos.');
+          }
+
+          const convertedResult = await heic2any({
+            blob: file,
+            toType: 'image/jpeg',
+            quality: 0.85
+          });
+
+          const finalBlob = Array.isArray(convertedResult) ? convertedResult[0] : convertedResult;
+          const newName = file.name.replace(/\.heic$/i, '.jpg');
+
+          return new File([finalBlob], newName, { type: 'image/jpeg' });
+        }
+
+        return file;
+      },
+
+      async compressImage(file, quality = 0.70, maxWidth = 1920) {
+        const processedFile = await this.prepareFile(file);
+        
+        let outputType = 'image/jpeg';
+        if (processedFile.type === 'image/png') outputType = 'image/png';
+        if (processedFile.type === 'image/webp') outputType = 'image/webp';
+
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(processedFile);
+          reader.onload = (e) => {
+            const img = new Image();
+            img.src = e.target.result;
+            img.onload = () => {
+              let width = img.width;
+              let height = img.height;
+
+              if (width > maxWidth) {
+                height = Math.round((height * maxWidth) / width);
+                width = maxWidth;
+              }
+
+              const canvas = document.createElement('canvas');
+              canvas.width = width;
+              canvas.height = height;
+
+              const ctx = canvas.getContext('2d');
+              
+              if (outputType === 'image/jpeg') {
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, width, height);
+              }
+              ctx.drawImage(img, 0, 0, width, height);
+
+              canvas.toBlob((blob) => {
+                if (!blob) {
+                  reject(new Error('Error al procesar la imagen'));
+                  return;
+                }
+
+                if (blob.size >= processedFile.size) {
+                  resolve({ blob: processedFile, reduced: false });
+                } else {
+                  resolve({ blob: blob, reduced: true });
+                }
+              }, outputType, quality);
+            };
+            img.onerror = reject;
+          };
+          reader.onerror = reject;
+        });
+      }
+    };
+
+    // Funciones para controlar el anuncio flotante
+    window.triggerDownloadAndShowAd = function(downloadUrl, downloadName) {
+      // 1. Iniciar la descarga del archivo
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = downloadName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      // 2. Mostrar la ventana de anuncio justo después (medio segundo tras descargar)
+      setTimeout(() => {
+        const modal = document.getElementById('ad-modal');
+        if (modal) {
+          modal.classList.remove('hidden');
+        }
+      }, 300);
+    };
+
+    window.closeAdModal = function() {
+      const modal = document.getElementById('ad-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+
+      const dropzone = document.getElementById('dropzone');
+      const fileInput = document.getElementById('file-input');
+      const selectBtn = document.getElementById('select-btn');
+
+      dropzone.addEventListener('click', () => {
+        fileInput.click();
+      });
+
+      selectBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fileInput.click();
+      });
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropzone.classList.add('active');
+        }, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropzone.classList.remove('active');
+        }, false);
+      });
+
+      dropzone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files.length) processFile(files[0]);
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length) processFile(e.target.files[0]);
+      });
+
+      async function processFile(file) {
+        dropzone.innerHTML = `
+          <div class="flex flex-col items-center gap-3 py-6">
+            <div class="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+            <p class="font-black text-slate-800 text-lg">Procesando y convirtiendo tu imagen...</p>
+            <p class="text-xs text-slate-500">Soporta JPG, PNG, WebP y fotos HEIC de iPhone...</p>
+          </div>
+        `;
+
+        try {
+          const result = await Engine.compressImage(file, 0.65);
+          const finalBlob = result.blob;
+          
+          const origKB = (file.size / 1024).toFixed(1);
+          const newKB = (finalBlob.size / 1024).toFixed(1);
+          const downloadUrl = URL.createObjectURL(finalBlob);
+          const downloadName = 'optimizado-' + file.name.replace(/\.heic$/i, '.jpg');
+
+          let statusText = '';
+          if (result.reduced) {
+            const savingsPercent = Math.round((1 - finalBlob.size / file.size) * 100);
+            statusText = `Reducido un <strong>${savingsPercent}%</strong> (de <span class="line-through text-slate-400">${origKB} KB</span> a <span class="font-black text-emerald-600 text-lg">${newKB} KB</span>)`;
+          } else {
+            statusText = `Tu imagen ya está optimizada al máximo (<span class="font-black text-indigo-600 text-lg">${origKB} KB</span>). Se mantiene sin pérdida de calidad.`;
+          }
+
+          dropzone.innerHTML = `
+            <div class="flex flex-col items-center gap-4">
+              <div class="w-16 h-16 bg-emerald-500 text-white rounded-2xl flex items-center justify-center shadow-lg">
+                <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+              </div>
+              <div class="max-w-md">
+                <h3 class="text-2xl font-black text-slate-900 mb-1">¡Imagen Lista!</h3>
+                <p class="text-sm text-slate-600">
+                  ${statusText}
+                </p>
+              </div>
+              
+              <!-- Botón que activa la descarga y abre el Anuncio Modal -->
+              <button onclick="event.stopPropagation(); triggerDownloadAndShowAd('${downloadUrl}', '${downloadName}');"
+                 class="bg-emerald-600 hover:bg-emerald-700 text-white font-black px-8 py-3.5 rounded-xl shadow-lg transition flex items-center gap-2 text-lg mt-2 cursor-pointer">
+                <i data-lucide="download" class="w-5 h-5"></i> Descargar Imagen
+              </button>
+
+              <button onclick="location.reload()" class="text-sm text-indigo-600 font-bold underline mt-2">
+                Optimizar otra imagen
+              </button>
+            </div>
+          `;
+          if (window.lucide) lucide.createIcons();
+        } catch (err) {
+          console.error(err);
+          alert('Ocurrió un error al procesar el archivo: ' + err.message);
+          location.reload();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
