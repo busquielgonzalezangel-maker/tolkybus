@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Página Principal -->
   <url>
-    <loc>https://tolkybus4.buskytool.workers.dev/</loc>
+    <loc>https://tolkybus.com/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1.00</priority>
   </url>
+
+  <!-- 1. Comprimir JPG -->
   <url>
-    <loc>https://tolkybus4.buskytool.workers.dev/reducir-imagen-a-100-kb.html</loc>
+    <loc>https://tolkybus.com/comprimir-jpg.html</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
-</urlse
+
+  <!-- 2. Comprimir PNG -->
+  <url>
+    <loc>https://tolkybus.com/comprimir-png.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 3. Comprimir WebP -->
+  <url>
+    <loc>https://tolkybus.com/comprimir-webp.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 4. Convertir HEIC a JPG -->
+  <url>
+    <loc>https://tolkybus.com/convertir-heic-a-jpg.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 5. Convertir HEIC a PNG -->
+  <url>
+    <loc>https://tolkybus.com/convertir-heic-a-png.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 6. Convertir HEIC a WebP -->
+  <url>
+    <loc>https://tolkybus.com/convertir-heic-a-webp.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 7. Redimensionar Imagen -->
+  <url>
+    <loc>https://tolkybus.com/redimensionar-imagen.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+</urlset>
