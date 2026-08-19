@@ -3,7 +3,7 @@
   
   <!-- Página Principal -->
   <url>
-    <loc>https://tolkybus.com/</loc>
+    <loc>https://tolkybus4.buskytool.workers.dev/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
@@ -11,7 +11,7 @@
 
   <!-- 1. Comprimir JPG -->
   <url>
-    <loc>https://tolkybus.com/comprimir-jpg.html</loc>
+    <loc>https://tolkybus4.buskytool.workers.dev/comprimir-jpg.html</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
@@ -19,7 +19,7 @@
 
   <!-- 2. Comprimir PNG -->
   <url>
-    <loc>https://tolkybus.com/comprimir-png.html</loc>
+    <loc>https://tolkybus4.buskytool.workers.dev/comprimir-png.html</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
@@ -27,7 +27,7 @@
 
   <!-- 3. Comprimir WebP -->
   <url>
-    <loc>https://tolkybus.com/comprimir-webp.html</loc>
+    <loc>https://tolkybus4.buskytool.workers.dev/comprimir-webp.html</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
@@ -35,7 +35,7 @@
 
   <!-- 4. Convertir HEIC a JPG -->
   <url>
-    <loc>https://tolkybus.com/convertir-heic-a-jpg.html</loc>
+    <loc>https://tolkybus4.buskytool.workers.dev/convertir-heic-a-jpg.html</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
@@ -43,7 +43,7 @@
 
   <!-- 5. Convertir HEIC a PNG -->
   <url>
-    <loc>https://tolkybus.com/convertir-heic-a-png.html</loc>
+    <loc>https://tolkybus4.buskytool.workers.dev/convertir-heic-a-png.html</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
@@ -51,7 +51,7 @@
 
   <!-- 6. Convertir HEIC a WebP -->
   <url>
-    <loc>https://tolkybus.com/convertir-heic-a-webp.html</loc>
+    <loc>https://tolkybus4.buskytool.workers.dev/convertir-heic-a-webp.html</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
@@ -59,7 +59,7 @@
 
   <!-- 7. Redimensionar Imagen -->
   <url>
-    <loc>https://tolkybus.com/redimensionar-imagen.html</loc>
+    <loc>https://tolkybus4.buskytool.workers.dev/redimensionar-imagen.html</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
