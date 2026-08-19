@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="QvnhMJwT1fme_idLwhfMCslcqhOAHSXb4ZtogrZZh18" />
+  <title>Comprimir JPG Gratis | Tolkybus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .dropzone-card {
+      background-color: #ffffff;
+      border: 4px dashed #4f46e5;
+      border-radius: 24px;
+      padding: 40px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+    .dropzone-card:hover, .dropzone-card.active {
+      background-color: #f5f3ff;
+      border-color: #3730a3;
+      transform: scale(1.01);
+    }
+    .adsterra-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black text-indigo-600 tracking-tight">TOLKYBUS</a>
+      <a href="/" class="text-sm font-bold text-slate-600 hover:text-indigo-600">← Volver al Inicio</a>
+    </div>
+  </header>
+
+  <main class="pt-8 pb-12 flex-grow">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Comprimir Imágenes <span class="text-indigo-600">JPG</span></h1>
+      <p class="text-slate-600 text-lg mb-6">Reduce el peso de tus fotos JPG/JPEG rápidamente manteniendo la mejor calidad.</p>
+
+      <div class="max-w-2xl mx-auto">
+        <div id="dropzone" class="dropzone-card">
+          <input type="file" id="file-input" class="hidden" accept="image/jpeg,image/jpg">
+          <div class="flex flex-col items-center">
+            <span class="bg-indigo-100 text-indigo-800 text-xs font-black tracking-wider uppercase px-4 py-1.5 rounded-full mb-4">📍 ARRASTRA AQUÍ TU IMAGEN JPG</span>
+            <div class="w-16 h-16 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-3">
+              <i data-lucide="image" class="w-8 h-8"></i>
+            </div>
+            <h2 class="text-2xl font-black text-slate-900 mb-1">Suelta tu imagen JPG aquí</h2>
+            <button type="button" id="select-btn" class="bg-indigo-600 text-white font-extrabold px-6 py-3 rounded-xl mt-4 shadow-lg hover:bg-indigo-700">Seleccionar JPG</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BANNER ANUNCIO -->
+      <div class="max-w-2xl mx-auto mt-8 bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+        <div class="adsterra-wrapper">
+          <script type="text/javascript">
+            atOptions = { 'key' : 'f573dfc8a6dc092e4dc407198ae09443', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+          </script>
+          <script type="text/javascript" src="https://ballroomfondnessnovelty.com/f573dfc8a6dc092e4dc407198ae09443/invoke.js"></script>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL ANUNCIO TRAS DESCARGA -->
+  <div id="ad-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-6 max-w-lg w-full text-center relative border-2 border-indigo-100">
+      <button onclick="closeAdModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 bg-slate-100 p-2 rounded-full"><i data-lucide="x" class="w-5 h-5"></i></button>
+      <h3 class="text-2xl font-black text-slate-900 mb-2">¡Tu JPG se ha comprimido!</h3>
+      <p class="text-sm text-slate-500 mb-6">Gracias por usar Tolkybus.</p>
+      <div class="w-full bg-slate-50 rounded-2xl p-4 border border-slate-200">
+        <div class="adsterra-wrapper">
+          <script type="text/javascript">
+            atOptions = { 'key' : 'f573dfc8a6dc092e4dc407198ae09443', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+          </script>
+          <script type="text/javascript" src="https://ballroomfondnessnovelty.com/f573dfc8a6dc092e4dc407198ae09443/invoke.js"></script>
+        </div>
+      </div>
+      <button onclick="closeAdModal()" class="mt-6 w-full bg-indigo-600 text-white font-extrabold py-3.5 rounded-xl">Continuar</button>
+    </div>
+  </div>
+
+  <footer class="bg-slate-900 text-slate-400 py-4 text-center text-xs">
+    <p>© 2026 Tolkybus. Comprimir JPG.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+      const dropzone = document.getElementById('dropzone');
+      const fileInput = document.getElementById('file-input');
+      const selectBtn = document.getElementById('select-btn');
+
+      dropzone.addEventListener('click', () => fileInput.click());
+      selectBtn.addEventListener('click', (e) => { e.stopPropagation(); fileInput.click(); });
+      
+      fileInput.addEventListener('change', (e) => { if (e.target.files.length) processJpg(e.target.files[0]); });
+
+      async function processJpg(file) {
+        dropzone.innerHTML = `<p class="font-black py-8">Comprimiendo JPG...</p>`;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+          const img = new Image();
+          img.src = e.target.result;
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, img.width, img.height);
+            ctx.drawImage(img, 0, 0);
+
+            canvas.toBlob((blob) => {
+              const downloadUrl = URL.createObjectURL(blob);
+              dropzone.innerHTML = `
+                <div class="flex flex-col items-center gap-4">
+                  <h3 class="text-2xl font-black text-slate-900">¡JPG Listo!</h3>
+                  <p class="text-sm">De ${(file.size/1024).toFixed(1)} KB a <strong>${(blob.size/1024).toFixed(1)} KB</strong></p>
+                  <button onclick="event.stopPropagation(); downloadAndAd('${downloadUrl}', 'comprimido-${file.name}');" class="bg-emerald-600 text-white font-black px-6 py-3 rounded-xl">Descargar JPG</button>
+                </div>
+              `;
+            }, 'image/jpeg', 0.65);
+          };
+        };
+      }
+    });
+
+    function downloadAndAd(url, name) {
+      const a = document.createElement('a'); a.href = url; a.download = name;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => document.getElementById('ad-modal').classList.remove('hidden'), 300);
+    }
+    function closeAdModal() { document.getElementById('ad-modal').classList.add('hidden'); }
+  </script>
+</body>
+</html>
