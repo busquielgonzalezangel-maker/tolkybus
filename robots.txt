@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://tolkybus.com/sitemap.xml
+
+Sitemap: https://tolkybus4.buskytool.workers.dev/sitemap.xml
